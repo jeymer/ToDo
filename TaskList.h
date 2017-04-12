@@ -9,7 +9,6 @@
 class TaskList {
  private:
   std::vector<Task> tasks;
-  int next_id;
  public:
   TaskList();
   void addTask(std::string);
