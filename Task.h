@@ -6,8 +6,9 @@
 class Task {
  private:
   std::string description;
+  std::string course;
  public:
-  Task(int, std::string);
+  Task(std::string);
   std::string getDescription();
 };
 
