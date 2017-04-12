@@ -5,11 +5,13 @@
 
 class Task {
  private:
+  unsigned int id;
   std::string description;
   std::string course;
  public:
-  Task(std::string);
+  Task(std::string, std::string);
   std::string getDescription();
+  std::string getCourse();
 };
 
 #endif
