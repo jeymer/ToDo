@@ -8,7 +8,6 @@ class Task {
   std::string description;
  public:
   Task(int, std::string);
-  int getID();
   std::string getDescription();
 };
 
