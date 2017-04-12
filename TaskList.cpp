@@ -4,8 +4,8 @@ TaskList::TaskList() {
   this->tasks = std::vector<Task>();
 }
 
-void TaskList::addTask(std::string description) {
-  this->tasks.push_back(Task(description));
+void TaskList::addTask(std::string description, std::string course) {
+  this->tasks.push_back(Task(description, course));
 }
 
 void TaskList::printTasks() {
