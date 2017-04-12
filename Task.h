@@ -4,14 +4,16 @@
 #define JE_TASK_H
 
 class Task {
- private:
+ public:
+
+  /* Fields */
   unsigned int id;
   std::string description;
   std::string course;
- public:
+
+  /* Methods */
   Task(std::string, std::string);
-  std::string getDescription();
-  std::string getCourse();
+
 };
 
 #endif
