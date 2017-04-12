@@ -5,7 +5,6 @@
 
 class Task {
  private:
-  int id;
   std::string description;
  public:
   Task(int, std::string);
