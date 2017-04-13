@@ -12,7 +12,7 @@ class Task {
   std::string course;
 
   /* Methods */
-  Task(std::string, std::string);
+  Task(int, std::string, std::string);
 
 };
 
