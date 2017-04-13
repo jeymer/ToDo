@@ -10,9 +10,10 @@ class Task {
   unsigned int id;
   std::string description;
   std::string course;
-
+  std::string due;
+  
   /* Methods */
-  Task(int, std::string, std::string);
+  Task(int, std::string, std::string, std::string);
 
 };
 

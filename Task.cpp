@@ -1,6 +1,6 @@
 #include "Task.h"
 
-Task::Task(int id, std::string description, std::string course) {
+Task::Task(int id, std::string description, std::string course, std::string due) {
   this->id = id;
 
   // Strip description of new line, tab, etc. characters
@@ -16,4 +16,12 @@ Task::Task(int id, std::string description, std::string course) {
   new_course.erase(std::remove(new_course.begin(), new_course.end(), '\t'), new_course.end());
   new_course.erase(std::remove(new_course.begin(), new_course.end(), '\r'), new_course.end());
   this->course = new_course;
+
+  // Strip due of new line, tab, etc. characters
+  std::string new_due = due;
+  new_due.erase(std::remove(new_due.begin(), new_due.end(), '\n'), new_due.end());
+  new_due.erase(std::remove(new_due.begin(), new_due.end(), '\t'), new_due.end());
+  new_due.erase(std::remove(new_due.begin(), new_due.end(), '\r'), new_due.end());
+  this->due = new_due;
+
 }

@@ -12,7 +12,7 @@ class TaskList {
   std::vector<Task> tasks;
  public:
   TaskList();
-  void addTask(std::string, std::string);
+  void addTask(std::string, std::string, std::string);
   void printTasks();
 };
 
