@@ -8,6 +8,7 @@
 
 class TaskList {
  private:
+  int next_id;
   std::vector<Task> tasks;
  public:
   TaskList();
