@@ -1,8 +1,8 @@
 FLAGS = -std=c++14 -g
-ALL_OBJS = Task.o TaskList.o Driver.o
+ALL_OBJS = Task.o TaskList.o ToDoManager.o
 
 all: $(ALL_OBJS)
-	g++ $(FLAGS) $(ALL_OBJS) -o task
+	g++ $(FLAGS) $(ALL_OBJS) -o todo
 
 Task.o: Task.cpp Task.h
 	g++ $(FLAGS) -c Task.cpp
@@ -10,8 +10,8 @@ Task.o: Task.cpp Task.h
 TaskList.o: TaskList.cpp TaskList.h Task.o
 	g++ $(FLAGS) -c TaskList.cpp
 
-Driver.o: Driver.cpp TaskList.o
-	g++ $(FLAGS) -c Driver.cpp
+ToDoManager.o: ToDoManager.cpp TaskList.o
+	g++ $(FLAGS) -c ToDoManager.cpp
 
 clean:
-	rm -f *.o *~ task
+	rm -f *.o *~ todo
