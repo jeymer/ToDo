@@ -13,6 +13,7 @@ class TaskList {
  public:
   TaskList();
   void addTask(std::string, std::string, std::string);
+  void deleteTask(int);
   void printTasks();
   void reindex();
 };

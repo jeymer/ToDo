@@ -9,6 +9,15 @@ void TaskList::addTask(std::string description, std::string course, std::string 
   this->tasks.push_back(Task(this->next_id++, description, course, due));
 }
 
+void TaskList::deleteTask(int id_to_delete) {
+  for(std::vector<Task>::iterator i = this->tasks.begin(); i <= this->tasks.end(); i++) {
+    if((*i).id == id_to_delete) {
+      this->tasks.erase(i);
+    }
+  }
+  this->reindex();
+}
+
 void TaskList::printTasks() {
 
   /* ===== Blank line before displayng list ===== */
@@ -25,7 +34,7 @@ void TaskList::printTasks() {
     /* == Print ID == */
     std::cout << " ";
     if(i < 10) std::cout << 0;
-    std::cout << i << " |";
+    std::cout << this->tasks[i].id << " |";
 
     
     /* == Print description == */
@@ -86,7 +95,7 @@ void TaskList::printTasks() {
 /* 
  * Traverses the vector of tasks and changes the IDs to match the order
  */
-void reindex() {
+void TaskList::reindex() {
   for(int i = 0; i < this->tasks.size(); i++) {
     this->tasks[i].id = i;
   }
