@@ -9,13 +9,15 @@ void TaskList::addTask(std::string description, std::string course, std::string 
   this->tasks.push_back(Task(this->next_id++, description, course, due));
 }
 
-void TaskList::deleteTask(int id_to_delete) {
+bool TaskList::deleteTask(int id_to_delete) {
   for(std::vector<Task>::iterator i = this->tasks.begin(); i <= this->tasks.end(); i++) {
     if((*i).id == id_to_delete) {
       this->tasks.erase(i);
+      this->reindex();
+      return true;
     }
   }
-  this->reindex();
+  return false;
 }
 
 void TaskList::printTasks() {
