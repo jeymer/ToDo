@@ -83,4 +83,12 @@ void TaskList::printTasks() {
   
 }
 
+/* 
+ * Traverses the vector of tasks and changes the IDs to match the order
+ */
+void reindex() {
+  for(int i = 0; i < this->tasks.size(); i++) {
+    this->tasks[i].id = i;
+  }
+}
 

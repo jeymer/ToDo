@@ -14,6 +14,7 @@ class TaskList {
   TaskList();
   void addTask(std::string, std::string, std::string);
   void printTasks();
+  void reindex();
 };
 
 #endif
