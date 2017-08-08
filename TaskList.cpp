@@ -20,6 +20,13 @@ bool TaskList::deleteTask(int id_to_delete) {
   return false;
 }
 
+/*
+ * Returns the task object with the id parameter
+ */
+Task TastList::get(int id) {
+  return this->tasks[i];
+}
+
 void TaskList::printTasks() {
 
   /* ===== Blank line before displayng list ===== */
@@ -92,6 +99,14 @@ void TaskList::printTasks() {
   /* ===== Blank line after displayng list ===== */
   std::cout << std::endl;  
   
+}
+
+/*
+ * Returns number of tasks in the TaskList
+ */
+
+int TaskList::numTasks() {
+  return this->tasks.size();
 }
 
 /* 
