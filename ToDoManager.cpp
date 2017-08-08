@@ -4,25 +4,25 @@
 #include <fstream>
 #include <cstdlib>
 
+/* Outputs an error message to the user*/
 void invalidInputMessage() {
   std::cout << "Invalid input. Look at README.md for commands." << std::endl;
 }
 
+/* Builds path where saved data will be stored/retrieved
+   Returns a string containing location of saved file */
 std::string getFilePath() {
   std::string file_path = getenv("HOME");
   file_path.append("/ToDo.txt");
   return file_path;
 }
 
-int main(int argc, char* argv[]) {
-  // Will hold tasks to be operated on
-  // Instantiated by opening saved file
+/* Takes saved task file by reference and parses line by line, adding tasks to list 
+   Returns a TaskList filled with all tasks saved in file */
+TaskList parseFile(std::ifstream& saved_file) {
   TaskList tasks;
-
-  std::ifstream saved_file;
-  saved_file.open(getFilePath());
-
   std::string line;
+
   while(std::getline(saved_file, line)) {
     std::string description = line.substr(0, line.find_first_of('~'));
     std::string course = line.substr(line.find_first_of('~') + 1, (line.find_last_of('~') - line.find_first_of('~') - 1));
@@ -30,7 +30,20 @@ int main(int argc, char* argv[]) {
     tasks.addTask(description, course, due);
   }
   
-  
+  return tasks;
+}
+
+int main(int argc, char* argv[]) {
+  // Will hold tasks to be operated on
+  TaskList tasks;
+
+  // Open saved file
+  std::ifstream saved_file;
+  saved_file.open(getFilePath());
+
+  // Read saved tasks into temporary TaskList
+  tasks = parseFile(saved_file);
+
   saved_file.close();
   
   /* ===== Check to ensure arguments ===== */
