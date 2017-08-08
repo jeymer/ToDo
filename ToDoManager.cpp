@@ -13,7 +13,7 @@ void invalidInputMessage() {
    Returns a string containing location of saved file */
 std::string getFilePath() {
   std::string file_path = getenv("HOME");
-  file_path.append("/ToDo.txt");
+  file_path.append("/.todo");
   return file_path;
 }
 
@@ -36,6 +36,22 @@ TaskList loadTasks() {
   
   saved_file.close();
   return tasks;
+}
+
+void saveTasks(TaskList tasks) {
+
+  // Open saved file
+  std::ofstream saved_file;
+  saved_file.open(getFilePath(), std::ofstream::out | std::ofstream::trunc);
+  
+  // Write tasks to file
+  for(int i = 0; i < tasks.numTasks(); i++) {
+    Task temp = tasks.get(i);
+    saved_file << temp.description << '~' << temp.course << '~' << temp.due << std::endl;
+  }
+  
+  saved_file.close();
+  
 }
 
 int main(int argc, char* argv[]) {
@@ -61,7 +77,7 @@ int main(int argc, char* argv[]) {
   }
   
   /* == Add new task == */
-  if(strcmp(argv[1], "add") == 0) {
+  else if(strcmp(argv[1], "add") == 0) {
     /*= Should have no additional arguments to add =*/
     if(argc != 2) {
       invalidInputMessage();
@@ -76,6 +92,29 @@ int main(int argc, char* argv[]) {
     std::cout << "Input due date: ";
     std::getline(std::cin, due);
 
+    tasks.addTask(desc, course, due);
+    saveTasks(tasks);
     
+  }
+
+  /*= Remove task =*/
+  else if(strcmp(argv[1], "remove") == 0) {
+    /*= Should only have 1 additional argument to remove (id to be removed) =*/
+    if(argc != 3) {
+      invalidInputMessage();
+      exit(-1);
+    }
+
+    int id_to_remove;
+    /*= Attempt to convert argument to integer =*/
+    try {
+      id_to_remove = std::stoi(argv[2]);
+    } catch(std::invalid_argument error) {
+      std::cout << "Invalid input for remove function. Please refer to the README.md" << std::endl;
+      exit(-2);
+    }
+    /*= Remove task with that ID =*/
+    tasks.deleteTask(std::stoi(argv[2]));
+    saveTasks(tasks);
   }
 }
