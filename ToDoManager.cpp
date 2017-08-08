@@ -19,10 +19,14 @@ std::string getFilePath() {
 
 /* Takes saved task file by reference and parses line by line, adding tasks to list 
    Returns a TaskList filled with all tasks saved in file */
-TaskList parseFile(std::ifstream& saved_file) {
+TaskList loadTasks() {
   TaskList tasks;
   std::string line;
 
+  // Open saved file
+  std::ifstream saved_file;
+  saved_file.open(getFilePath());
+  
   while(std::getline(saved_file, line)) {
     std::string description = line.substr(0, line.find_first_of('~'));
     std::string course = line.substr(line.find_first_of('~') + 1, (line.find_last_of('~') - line.find_first_of('~') - 1));
@@ -30,21 +34,13 @@ TaskList parseFile(std::ifstream& saved_file) {
     tasks.addTask(description, course, due);
   }
   
+  saved_file.close();
   return tasks;
 }
 
 int main(int argc, char* argv[]) {
   // Will hold tasks to be operated on
-  TaskList tasks;
-
-  // Open saved file
-  std::ifstream saved_file;
-  saved_file.open(getFilePath());
-
-  // Read saved tasks into temporary TaskList
-  tasks = parseFile(saved_file);
-
-  saved_file.close();
+  TaskList tasks = loadTasks();
   
   /* ===== Check to ensure arguments ===== */
   if(argc == 1) {
@@ -79,6 +75,7 @@ int main(int argc, char* argv[]) {
     std::getline(std::cin, course);
     std::cout << "Input due date: ";
     std::getline(std::cin, due);
+
     
   }
 }
