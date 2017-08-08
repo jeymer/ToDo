@@ -23,8 +23,8 @@ bool TaskList::deleteTask(int id_to_delete) {
 /*
  * Returns the task object with the id parameter
  */
-Task TastList::get(int id) {
-  return this->tasks[i];
+Task TaskList::get(int id) {
+  return this->tasks[id];
 }
 
 void TaskList::printTasks() {
