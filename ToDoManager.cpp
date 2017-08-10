@@ -83,14 +83,55 @@ int main(int argc, char* argv[]) {
       invalidInputMessage();
       exit(-1);
     }
+
     /*= Get fields to put into new task =*/
-    std::string desc, course, due;
-    std::cout << "Input description: ";
-    std::getline(std::cin, desc);
-    std::cout << "Input course: ";
-    std::getline(std::cin, course);
-    std::cout << "Input due date: ";
-    std::getline(std::cin, due);
+    std::string desc = "";
+    std::string course = "";
+    std::string due = "";
+
+    /*= Need to ensure nobody inputs '~' into any field =*/
+    std::string temp = "";
+
+    /*= Description =*/
+    while(desc == "") {
+      std::cout << "Input description: ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your description." << std::endl;
+      }
+    }
+    desc = temp;
+    temp = "";
+
+    /*= Course =*/
+    while(course == "") {
+      std::cout << "Input course: ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your course." << std::endl;
+      }
+    }
+    course = temp;
+    temp = "";
+
+    /*= Due Date =*/
+    while(due == "") {
+      std::cout << "Input due date: ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your due date." << std::endl;
+      }
+    }
+    due = temp;
 
     tasks.addTask(desc, course, due);
     saveTasks(tasks);
