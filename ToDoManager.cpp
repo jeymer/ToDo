@@ -158,4 +158,14 @@ int main(int argc, char* argv[]) {
     tasks.deleteTask(std::stoi(argv[2]));
     saveTasks(tasks);
   }
+
+  /*= Help =*/
+  else if(strcmp(argv[1], "help") == 0) {
+    std::cout << "For help using ToDo, please refer to the README.md" << std::endl;
+  }
+  
+  /*= Incorrect command =*/
+  else {
+    invalidInputMessage();
+  }
 }
