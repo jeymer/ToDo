@@ -154,6 +154,12 @@ int main(int argc, char* argv[]) {
       std::cout << "Invalid input for remove function. Please refer to the README.md" << std::endl;
       exit(-2);
     }
+    /*= Make sure ID is valid =*/
+    if(id_to_remove < 0 || id_to_remove >= tasks.numTasks()) {
+      std::cout << "No task exists with that ID." << std::endl;
+      exit(-3);
+    }
+      
     /*= Remove task with that ID =*/
     tasks.deleteTask(std::stoi(argv[2]));
     saveTasks(tasks);
