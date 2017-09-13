@@ -160,6 +160,24 @@ int main(int argc, char* argv[]) {
       exit(-3);
     }
       
+    /*= Confirm removal of task =*/
+    std::cout << "Are you sure you would like to remove " << tasks.get(id_to_remove).description << " for class " << tasks.get(id_to_remove).course << "? (y/n)" << std::endl;
+
+    while(true) {
+      std::string confirm_input;
+      std::cin >> confirm_input;
+      if(confirm_input.compare("y") == 0) {
+	break;
+      }
+      else if(confirm_input.compare("n") == 0) {
+	std::cout << "Task not removed." << std::endl;
+	exit(-4);
+      }
+      else {
+	std::cout << "Invalid input. Please enter either y or n." << std::endl;
+      }
+    }
+    
     /*= Remove task with that ID =*/
     tasks.deleteTask(std::stoi(argv[2]));
     saveTasks(tasks);
