@@ -33,8 +33,8 @@ void TaskList::printTasks() {
   std::cout << std::endl;
   
   /* ===== Print header ===== */
-  std::cout << " ID |    Description    | Course |" << "          Due Date          |" << std::endl;
-  std::cout << "================================================================" << std::endl;
+  std::cout << " ID |    Description    |  Course  |" << "          Due Date          |" << std::endl;
+  std::cout << "==================================================================" << std::endl;
 
   /* ===== Print tasks ===== */
   for(int i = 0; i < this->tasks.size(); i++) {  
@@ -62,15 +62,15 @@ void TaskList::printTasks() {
 
 
     /* == Print course == */
-    int course_length = this->tasks[i].course.substr(0, 6).length();
+    int course_length = this->tasks[i].course.substr(0, 8).length();
     // Print leading whitespace
-    for(int leading = 0; leading < (8 - (course_length)) / 2; leading++) {
+    for(int leading = 0; leading < (10 - (course_length)) / 2; leading++) {
       std::cout << " ";
     }
     // Print course text
-    std::cout << this->tasks[i].course.substr(0,6);
+    std::cout << this->tasks[i].course.substr(0,8);
     // Print trailing whitespace
-    for(int trailing = 0; trailing < 8 - (((8 - (course_length)) / 2) + course_length); trailing ++) {
+    for(int trailing = 0; trailing < 10 - (((10 - (course_length)) / 2) + course_length); trailing ++) {
       std::cout << " ";
     }
     std::cout << "|";
