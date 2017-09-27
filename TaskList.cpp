@@ -118,3 +118,10 @@ void TaskList::reindex() {
   }
 }
 
+
+/*
+ * Removes all tasks from the list
+ */
+void TaskList::clear() {
+  this->tasks.clear();
+}

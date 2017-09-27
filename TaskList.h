@@ -18,6 +18,7 @@ class TaskList {
   void printTasks();
   int numTasks();
   void reindex();
+  void clear();
 };
 
 #endif

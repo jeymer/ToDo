@@ -54,6 +54,23 @@ void saveTasks(TaskList tasks) {
   
 }
 
+/*= Confirms action with user input=*/
+bool confirmInput() { 
+    while(true) {
+      std::string confirm_input;
+      std::cin >> confirm_input;
+      if(confirm_input.compare("y") == 0) {
+	return true;
+      }
+      else if(confirm_input.compare("n") == 0) {
+	return false;
+      }
+      else {
+	std::cout << "Invalid input. Please enter either y or n." << std::endl;
+      }
+    }
+}
+
 int main(int argc, char* argv[]) {
   // Will hold tasks to be operated on
   TaskList tasks = loadTasks();
@@ -68,7 +85,7 @@ int main(int argc, char* argv[]) {
 
   /* == List tasks in list == */
   if(strcmp(argv[1], "list") == 0) {
-    /*= Should have no additional arguments to add =*/
+    /*= Should have no additional arguments to list =*/
     if(argc != 2) {
       invalidInputMessage();
       exit(-1);
@@ -160,29 +177,37 @@ int main(int argc, char* argv[]) {
       exit(-3);
     }
       
-    /*= Confirm removal of task =*/
     std::cout << "Are you sure you would like to remove " << tasks.get(id_to_remove).description << " for class " << tasks.get(id_to_remove).course << "? (y/n)" << std::endl;
-
-    while(true) {
-      std::string confirm_input;
-      std::cin >> confirm_input;
-      if(confirm_input.compare("y") == 0) {
-	break;
-      }
-      else if(confirm_input.compare("n") == 0) {
-	std::cout << "Task not removed." << std::endl;
-	exit(-4);
-      }
-      else {
-	std::cout << "Invalid input. Please enter either y or n." << std::endl;
-      }
+    if(confirmInput() == false) {
+      std::cout << "Task not removed." << std::endl;
+       exit(-4);
     }
+    // Otherwise, user input was "y"
     
     /*= Remove task with that ID =*/
     tasks.deleteTask(std::stoi(argv[2]));
     saveTasks(tasks);
   }
 
+  /*= Clear all tasks from list =*/
+  else if(strcmp(argv[1], "clear") == 0) {
+    /*= Should have no additional arguments to clear =*/
+    if(argc != 2) {
+      invalidInputMessage();
+      exit(-1);
+    }
+
+    std::cout << "Are you sure you would like to remove all " << tasks.numTasks() << " tasks from the list? (y/n)" << std::endl;
+    if(confirmInput() == false) {
+      std::cout << "Tasks not removed." << std::endl;
+       exit(-4);
+    }
+    // Otherwise, user input was "y"
+    tasks.clear();
+    saveTasks(tasks);
+    
+  }
+  
   /*= Help =*/
   else if(strcmp(argv[1], "help") == 0) {
     std::cout << "For help using ToDo, please refer to the README.md" << std::endl;
@@ -192,4 +217,5 @@ int main(int argc, char* argv[]) {
   else {
     invalidInputMessage();
   }
+
 }
