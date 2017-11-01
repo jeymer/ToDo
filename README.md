@@ -24,5 +24,8 @@ First, clone all files in the repo into one directory.
 **Add task to to-do list:**  
 `todo add`  
 
+**Edit existing task in to-do list:**  
+`todo edit <id>`  
+
 **Remove task from to-do list:**  
 `todo remove <id>`

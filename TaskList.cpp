@@ -20,6 +20,10 @@ bool TaskList::deleteTask(int id_to_delete) {
   return false;
 }
 
+void TaskList::editTask(int id, std::string new_description, std::string new_course, std::string new_due) {
+  this->tasks[id].edit(new_description, new_course, new_due);
+}
+
 /*
  * Returns the task object with the id parameter
  */

@@ -23,5 +23,16 @@ Task::Task(int id, std::string description, std::string course, std::string due)
   new_due.erase(std::remove(new_due.begin(), new_due.end(), '\t'), new_due.end());
   new_due.erase(std::remove(new_due.begin(), new_due.end(), '\r'), new_due.end());
   this->due = new_due;
+}
 
+void Task::edit(std::string new_description, std::string new_course, std::string new_due) {
+  if(new_description.compare("") != 0) {
+    this->description = new_description;
+  }
+  if(new_course.compare("") != 0) {
+    this->course = new_course;
+  }
+  if(new_due.compare("") != 0) {
+    this->due = new_due;
+  }
 }

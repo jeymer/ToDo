@@ -14,6 +14,7 @@ class TaskList {
   TaskList();
   void addTask(std::string, std::string, std::string);
   bool deleteTask(int);
+  void editTask(int, std::string, std::string, std::string);
   Task get(int);
   void printTasks();
   int numTasks();

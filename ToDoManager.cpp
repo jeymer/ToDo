@@ -189,6 +189,81 @@ int main(int argc, char* argv[]) {
     saveTasks(tasks);
   }
 
+  /*= Edit task =*/
+  else if(strcmp(argv[1], "edit") == 0) {
+    /*= Should only have 1 additional argument to edit (id to be edited) =*/
+    if(argc != 3) {
+      invalidInputMessage();
+      exit(-1);
+    }
+    /*= Get fields to put into new task =*/
+    std::string desc = "";
+    std::string course = "";
+    std::string due = "";
+
+    int id_to_edit;
+    /*= Attempt to convert argument to integer =*/
+    try {
+      id_to_edit = std::stoi(argv[2]);
+    } catch(std::invalid_argument error) {
+      std::cout << "Invalid input for edit function. Please refer to the README.md" << std::endl;
+      exit(-2);
+    }
+    /*= Make sure ID is valid =*/
+    if(id_to_edit < 0 || id_to_edit >= tasks.numTasks()) {
+      std::cout << "No task exists with that ID." << std::endl;
+      exit(-3);
+    }
+
+    
+    /*= Need to ensure nobody inputs '~' into any field =*/
+    std::string temp = "";
+
+    /*= Description =*/
+    while(desc == "") {
+      std::cout << "Input new description (leave blank for no change): ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your description." << std::endl;
+      }
+    }
+    desc = temp;
+    temp = "";
+
+    /*= Course =*/
+    while(course == "") {
+      std::cout << "Input new course (leave blank for no change): ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your course." << std::endl;
+      }
+    }
+    course = temp;
+    temp = "";
+
+    /*= Due Date =*/
+    while(due == "") {
+      std::cout << "Input new due date (leave blank for no change): ";
+      std::getline(std::cin, temp);
+      if(temp.find("~") == std::string::npos) {
+	break;
+      }
+      else {
+	std::cout << "Error. Please do not input '~' in your due date." << std::endl;
+      }
+    }
+    due = temp;
+
+    tasks.editTask(id_to_edit, desc, course, due);
+    saveTasks(tasks);
+  }
+  
   /*= Clear all tasks from list =*/
   else if(strcmp(argv[1], "clear") == 0) {
     /*= Should have no additional arguments to clear =*/

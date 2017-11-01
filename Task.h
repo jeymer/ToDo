@@ -14,7 +14,7 @@ class Task {
   
   /* Methods */
   Task(int, std::string, std::string, std::string);
-
+  void edit(std::string, std::string, std::string);
 };
 
 #endif
