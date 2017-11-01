@@ -29,3 +29,6 @@ First, clone all files in the repo into one directory.
 
 **Remove task from to-do list:**  
 `todo remove <id>`
+
+**Clear all tasks from to-do list:**  
+`todo clear`
