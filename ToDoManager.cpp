@@ -272,6 +272,12 @@ int main(int argc, char* argv[]) {
       exit(-1);
     }
 
+    // See if list is already clear
+    if(tasks.numTasks() == 0) {
+      std::cout << "List is already clear." << std::endl;
+      exit(0);
+    }
+
     std::cout << "Are you sure you would like to remove all " << tasks.numTasks() << " tasks from the list? (y/n)" << std::endl;
     if(confirmInput() == false) {
       std::cout << "Tasks not removed." << std::endl;
