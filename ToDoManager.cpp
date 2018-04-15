@@ -59,10 +59,10 @@ bool confirmInput() {
     while(true) {
       std::string confirm_input;
       std::cin >> confirm_input;
-      if(confirm_input.compare("y") == 0) {
+      if(confirm_input.compare("y") == 0 || confirm_input.compare("yes") == 0) {
 	return true;
       }
-      else if(confirm_input.compare("n") == 0) {
+      else if(confirm_input.compare("n") == 0 || confirm_input.compare("no") == 0) {
 	return false;
       }
       else {
